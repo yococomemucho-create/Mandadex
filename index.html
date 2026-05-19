@@ -1,21 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>;)</title>
-</head>
-<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
-  <h1 style="font-size:80px;">Pide ahora! ;)</h1>
-   <style>
-    .contenedor {
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandadex MVP</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="contenedor">
-    <img src="https://png.pngtree.com/png-clipart/20250105/original/pngtree-vector-wink-emoji-icon-png-image_18965266.png" alt="Imagen centrada" style="width: 300px; height: auto;">
-  </div>
+<div class="screen active" id="screen1">
+    <div class="container">
+        <div class="logo">Mandadex</div>
+        <h1>Pide tu mandado</h1>
+        <p>Rápido, fácil y directo</p>
+
+        <input type="text" id="nombre" placeholder="Tu nombre">
+        <input type="text" id="direccionEntrega" placeholder="Dirección de entrega">
+
+        <textarea id="pedido" placeholder="¿Qué necesitas?"></textarea>
+
+        <select id="pago">
+            <option value="">Método de pago</option>
+            <option>Efectivo</option>
+            <option>Transferencia</option>
+            <option>Tarjeta</option>
+        </select>
+
+        <button onclick="irPantalla2()">Continuar</button>
+    </div>
+</div>
+
+<div class="screen" id="screen2">
+    <div class="container">
+        <div class="logo">Mandadex</div>
+        <h1>Confirmar pedido</h1>
+
+        <input type="number" id="costoProducto" placeholder="Costo aproximado del producto">
+
+        <textarea id="direccionRecogida" placeholder="Dirección donde se recoge"></textarea>
+
+        <div class="location-card">
+            <div class="location-top">
+                <span>📍</span>
+                <h3>Ubicación actual</h3>
+            </div>
+
+            <div id="ubicacionTexto">
+                Presiona el botón para detectar tu ubicación.
+            </div>
+
+            <button class="location-btn" onclick="obtenerUbicacion()">
+                Usar mi ubicación
+            </button>
+        </div>
+
+        <button onclick="confirmarPedido()">
+            Confirmar pedido
+        </button>
+    </div>
+</div>
+
+<div class="screen" id="screen3">
+    <div class="container">
+        <div class="logo">Mandadex</div>
+
+        <div class="status">
+            🟢 Pedido en curso
+        </div>
+
+        <div class="card">
+            <h3>🛒 Pedido</h3>
+            <p id="resPedido"></p>
+        </div>
+
+        <div class="card">
+            <h3>📍 Entrega</h3>
+            <p id="resEntrega"></p>
+        </div>
+
+        <div class="card">
+            <h3>🏪 Recoger en</h3>
+            <p id="resRecogida"></p>
+        </div>
+
+        <div class="card">
+            <h3>💳 Pago</h3>
+            <p id="resPago"></p>
+        </div>
+
+        <div class="time-box">
+            ⏱️ Tiempo aproximado: 25 - 40 min
+        </div>
+
+        <button onclick="enviarWhatsApp()">
+            Enviar pedido a WhatsApp
+        </button>
+
+    </div>
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
