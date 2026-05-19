@@ -91,7 +91,7 @@ function confirmarPedido(){
 
 function enviarWhatsApp(){
 
-    let numero = "5213220000000";
+    let numero = "5213221711844";
 
     let mensaje =
 `🛵 NUEVO PEDIDO MANDADEX
