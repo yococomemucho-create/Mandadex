@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mandadex | Registro Repartidor</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
 <style>
 
 *{
@@ -447,6 +449,15 @@ input::placeholder{
 
 <script>
 
+const SUPABASE_URL = "https://fatwbryclojwzmfjkwmy.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_GxtunauXouOznIIpfX3RPw_th3eOiAG";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+    
 const form = document.getElementById("registroForm");
 
 const formScreen = document.getElementById("formScreen");
@@ -545,7 +556,23 @@ document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
 
     };
 
-    console.log(datos);
+    const { error } = await supabaseClient
+.from("repartidores")
+.insert([datos]);
+
+if(error){
+
+    alert("ERROR: " + error.message);
+
+    console.log(error);
+
+}else{
+
+    alert("REGISTRO GUARDADO");
+
+    console.log("Registro guardado correctamente");
+
+}
 
 });
 
