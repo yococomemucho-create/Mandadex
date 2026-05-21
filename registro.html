@@ -323,16 +323,7 @@ input::placeholder{
 
         max-width:100%;
 
-    padding:14px;
-
-    background:#1f2937;
-
-    border-radius:35px;
-
-    border:1px solid rgba(255,255,255,.04);
-
-    box-shadow:
-    0 0 35px rgba(0,0,0,.35);
+        padding:14px;
 
     }
 
@@ -349,7 +340,6 @@ input::placeholder{
     }
 
 }
-
 </style>
 </head>
 
@@ -556,6 +546,9 @@ const badgeScreen = document.getElementById("badgeScreen");
 
 const avatars = document.querySelectorAll(".avatar");
 const motos = document.querySelectorAll(".moto");
+
+    document.querySelector(".container")
+.classList.add("container-final");
 
 let selectedAvatar = "🧑";
 let selectedMoto = "🏍️";
