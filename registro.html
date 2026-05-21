@@ -27,24 +27,22 @@ body{
 }
 
 .container{
-
-     width:100%;
-
+    width:100%;
     max-width:460px;
-
+    background:#1f2937;
     padding:28px;
+    border-radius:30px;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+.hide-container{
 
-    border-radius:25px;
+    background:transparent !important;
 
-    background:transparent;
+    box-shadow:none !important;
 
-    box-shadow:none;
-
-    transition:.4s;
-
+    border:none !important;
 
 }
-
     .container-final{
 
     background:#1f2937;
@@ -595,12 +593,16 @@ form.addEventListener("submit", function(e){
     formScreen.style.display = "none";
 
     loadingScreen.style.display = "block";
+    document.querySelector(".container")
+.classList.add("hide-container");
 
     setTimeout(()=>{
 
         loadingScreen.style.display = "none";
 
         avatarScreen.style.display = "block";
+        document.querySelector(".container")
+.classList.add("hide-container");
 
     },2500);
 
@@ -611,6 +613,8 @@ document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
     avatarScreen.style.display = "none";
 
     badgeScreen.style.display = "block";
+    document.querySelector(".container")
+.classList.remove("hide-container");
 
     document.querySelector(".container")
 .classList.add("container-final");
