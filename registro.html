@@ -153,17 +153,20 @@ input::placeholder{
 }
 
 .badge{
+    background:linear-gradient(145deg,#2563eb,#1e40af);
+    border-radius:35px;
+    padding:35px 25px;
+    color:white;
+    margin-top:20px;
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.45),
+    inset 0 1px 1px rgba(255,255,255,.15);
 
-    width:100%;
+    position:relative;
+    overflow:hidden;
 
-    max-width:390px;
-
-    margin:20px auto;
-
-    padding:45px 22px;
-
+    border:1px solid rgba(255,255,255,.08);
 }
-
 .badge::before{
     content:"";
     position:absolute;
