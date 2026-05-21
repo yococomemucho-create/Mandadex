@@ -28,20 +28,33 @@ body{
 
 .container{
 
-    width:100%;
+     width:100%;
 
     max-width:460px;
 
-    background:#1f2937;
-
     padding:28px;
 
-    border-radius:30px;
+    border-radius:25px;
 
-    box-shadow:0 0 30px rgba(0,0,0,.4);
+    background:transparent;
+
+    box-shadow:none;
+
+    transition:.4s;
+
 
 }
 
+    .container-final{
+
+    background:#1f2937;
+
+    border:1px solid rgba(255,255,255,.04);
+
+    box-shadow:
+    0 0 35px rgba(0,0,0,.35);
+
+}
 .logo{
     text-align:center;
     margin-bottom:25px;
@@ -605,6 +618,9 @@ document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
     avatarScreen.style.display = "none";
 
     badgeScreen.style.display = "block";
+
+    document.querySelector(".container")
+.classList.add("container-final");
 
     document.getElementById("badgeAvatar").textContent = selectedAvatar;
 
