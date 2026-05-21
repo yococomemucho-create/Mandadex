@@ -3,103 +3,553 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mandadex MVP</title>
-<link rel="stylesheet" href="style.css">
+<title>Mandadex | Registro Repartidor</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111827;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    color:white;
+}
+
+.container{
+    width:100%;
+    max-width:460px;
+    background:#1f2937;
+    padding:28px;
+    border-radius:30px;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:#ff5a1f;
+    font-size:36px;
+}
+
+.logo p{
+    color:#9ca3af;
+    margin-top:5px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#d1d5db;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:#374151;
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+input::placeholder{
+    color:#9ca3af;
+}
+
+.btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:#ff5a1f;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:10px;
+}
+
+.btn:hover{
+    background:#ff6f3c;
+}
+
+.loading-screen,
+.avatar-screen,
+.badge-screen{
+    display:none;
+    text-align:center;
+}
+
+.loader{
+    width:85px;
+    height:85px;
+    border:8px solid #374151;
+    border-top:8px solid #ff5a1f;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:30px auto;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+.avatar-grid,
+.moto-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin:20px 0;
+}
+
+.avatar,
+.moto{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    background:#374151;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    cursor:pointer;
+    border:3px solid transparent;
+    transition:.2s;
+}
+
+.selected{
+    border:3px solid #ff5a1f;
+    transform:scale(1.05);
+}
+
+.badge{
+    background:linear-gradient(145deg,#ff5a1f,#ff7b47);
+    border-radius:30px;
+    padding:30px 25px;
+    color:white;
+    margin-top:20px;
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.2);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.badge::before{
+    content:"";
+    position:absolute;
+    top:-60px;
+    right:-60px;
+    width:180px;
+    height:180px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+}
+
+.badge-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.mandadex-logo{
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.badge-status{
+    background:#16a34a;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.badge-avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:white;
+    color:#111827;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    margin:0 auto 15px;
+    border:5px solid rgba(255,255,255,.3);
+}
+
+.badge h2{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.badge-role{
+    text-align:center;
+    opacity:.9;
+    margin-bottom:20px;
+}
+
+.badge-divider{
+    width:100%;
+    height:1px;
+    background:rgba(255,255,255,.3);
+    margin:20px 0;
+}
+
+.info-box{
+    background:rgba(255,255,255,.12);
+    padding:18px;
+    border-radius:18px;
+    backdrop-filter:blur(10px);
+}
+
+.label{
+    display:block;
+    font-size:13px;
+    opacity:.8;
+    margin-bottom:10px;
+}
+
+.moto-section{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.moto-icon{
+    font-size:35px;
+}
+
+.badge-id{
+    margin-top:25px;
+    background:#111827;
+    padding:14px;
+    border-radius:14px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="screen active" id="screen1">
-    <div class="container">
-        <div class="logo">Mandadex</div>
-        <h1>Pide tu mandado</h1>
-        <p>Rápido, fácil y directo</p>
+<div class="container">
 
-        <input type="text" id="nombre" placeholder="Tu nombre">
-        <input type="text" id="direccionEntrega" placeholder="Dirección de entrega">
+    <!-- FORMULARIO -->
 
-        <textarea id="pedido" placeholder="¿Qué necesitas?"></textarea>
+    <div id="formScreen">
 
-        <select id="pago">
-            <option value="">Método de pago</option>
-            <option>Efectivo</option>
-            <option>Transferencia</option>
-            <option>Tarjeta</option>
-        </select>
+        <div class="logo">
+            <h1>Mandadex</h1>
+            <p>Registro de Repartidores</p>
+        </div>
 
-        <button onclick="irPantalla2()">Continuar</button>
-    </div>
-</div>
+        <form id="registroForm">
 
-<div class="screen" id="screen2">
-    <div class="container">
-        <div class="logo">Mandadex</div>
-        <h1>Confirmar pedido</h1>
+            <div class="form-group">
+                <label>Nombre completo</label>
 
-        <input type="number" id="costoProducto" placeholder="Costo aproximado del producto">
-
-        <textarea id="direccionRecogida" placeholder="Dirección donde se recoge"></textarea>
-
-        <div class="location-card">
-            <div class="location-top">
-                <span>📍</span>
-                <h3>Ubicación actual</h3>
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Ingresa tu nombre"
+                    required
+                >
             </div>
 
-            <div id="ubicacionTexto">
-                Presiona el botón para detectar tu ubicación.
+            <div class="form-group">
+                <label>Teléfono</label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    placeholder="333 000 0000"
+                    required
+                >
             </div>
 
-            <button class="location-btn" onclick="obtenerUbicacion()">
-                Usar mi ubicación
+            <div class="form-group">
+                <label>Correo electrónico</label>
+
+                <input
+                    type="email"
+                    id="correo"
+                    placeholder="correo@gmail.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Modelo de motocicleta</label>
+
+                <input
+                    type="text"
+                    id="motoModelo"
+                    placeholder="Ejemplo: Italika FT150"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn">
+                Registrarme
             </button>
-        </div>
 
-        <button onclick="confirmarPedido()">
-            Confirmar pedido
-        </button>
-    </div>
-</div>
-
-<div class="screen" id="screen3">
-    <div class="container">
-        <div class="logo">Mandadex</div>
-
-        <div class="status">
-            🟢 Pedido en curso
-        </div>
-
-        <div class="card">
-            <h3>🛒 Pedido</h3>
-            <p id="resPedido"></p>
-        </div>
-
-        <div class="card">
-            <h3>📍 Entrega</h3>
-            <p id="resEntrega"></p>
-        </div>
-
-        <div class="card">
-            <h3>🏪 Recoger en</h3>
-            <p id="resRecogida"></p>
-        </div>
-
-        <div class="card">
-            <h3>💳 Pago</h3>
-            <p id="resPago"></p>
-        </div>
-
-        <div class="time-box">
-            ⏱️ Tiempo aproximado: 25 - 40 min
-        </div>
-
-        <button onclick="enviarWhatsApp()">
-            Enviar pedido 
-        </button>
+        </form>
 
     </div>
+
+    <!-- CARGANDO -->
+
+    <div class="loading-screen" id="loadingScreen">
+
+        <div class="loader"></div>
+
+        <h2>Registrando...</h2>
+
+        <p style="margin-top:10px;color:#9ca3af;">
+            Preparando tu gafete digital
+        </p>
+
+    </div>
+
+    <!-- AVATAR -->
+
+    <div class="avatar-screen" id="avatarScreen">
+
+        <h2>Todo listo ✅</h2>
+
+        <p style="margin-top:10px;color:#9ca3af;">
+            Elige tu avatar y motocicleta
+        </p>
+
+        <h3 style="margin-top:25px;">Avatar</h3>
+
+        <div class="avatar-grid">
+
+            <div class="avatar">🧑</div>
+            <div class="avatar">👨</div>
+            <div class="avatar">😎</div>
+            <div class="avatar">🧔</div>
+            <div class="avatar">👨‍🚀</div>
+
+        </div>
+
+        <h3 style="margin-top:20px;">Motocicleta</h3>
+
+        <div class="moto-grid">
+
+            <div class="moto">🏍️</div>
+            <div class="moto">🛵</div>
+            <div class="moto">🏍</div>
+            <div class="moto">🛵</div>
+            <div class="moto">🏍️</div>
+
+        </div>
+
+        <button class="btn" id="confirmarBtn">
+            Confirmar
+        </button>
+
+    </div>
+
+    <!-- GAFETE -->
+
+    <div class="badge-screen" id="badgeScreen">
+
+        <div class="badge">
+
+            <div class="badge-top">
+
+                <div class="mandadex-logo">
+                    MDX
+                </div>
+
+                <div class="badge-status">
+                    ACTIVO
+                </div>
+
+            </div>
+
+            <div class="badge-avatar" id="badgeAvatar">
+                🧑
+            </div>
+
+            <h2 id="badgeNombre">
+                Nombre
+            </h2>
+
+            <p class="badge-role">
+                Repartidor Oficial
+            </p>
+
+            <div class="badge-divider"></div>
+
+            <div class="info-box">
+
+                <span class="label">
+                    Motocicleta
+                </span>
+
+                <div class="moto-section">
+
+                    <span class="moto-icon" id="badgeMoto">
+                        🏍️
+                    </span>
+
+                    <span id="badgeModelo">
+                        Italika FT150
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="badge-id" id="badgeId">
+                MDX-00001
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<script src="app.js"></script>
+<script>
+
+const form = document.getElementById("registroForm");
+
+const formScreen = document.getElementById("formScreen");
+const loadingScreen = document.getElementById("loadingScreen");
+const avatarScreen = document.getElementById("avatarScreen");
+const badgeScreen = document.getElementById("badgeScreen");
+
+const avatars = document.querySelectorAll(".avatar");
+const motos = document.querySelectorAll(".moto");
+
+let selectedAvatar = "🧑";
+let selectedMoto = "🏍️";
+
+let nombreGlobal = "";
+let motoGlobal = "";
+
+avatars.forEach(avatar => {
+
+    avatar.addEventListener("click", ()=>{
+
+        avatars.forEach(a => a.classList.remove("selected"));
+
+        avatar.classList.add("selected");
+
+        selectedAvatar = avatar.textContent;
+
+    });
+
+});
+
+motos.forEach(moto => {
+
+    moto.addEventListener("click", ()=>{
+
+        motos.forEach(m => m.classList.remove("selected"));
+
+        moto.classList.add("selected");
+
+        selectedMoto = moto.textContent;
+
+    });
+
+});
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    nombreGlobal = document.getElementById("nombre").value;
+
+    motoGlobal = document.getElementById("motoModelo").value;
+
+    formScreen.style.display = "none";
+
+    loadingScreen.style.display = "block";
+
+    setTimeout(()=>{
+
+        loadingScreen.style.display = "none";
+
+        avatarScreen.style.display = "block";
+
+    },2500);
+
+});
+
+document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
+
+    avatarScreen.style.display = "none";
+
+    badgeScreen.style.display = "block";
+
+    document.getElementById("badgeAvatar").textContent = selectedAvatar;
+
+    document.getElementById("badgeMoto").textContent = selectedMoto;
+
+    document.getElementById("badgeNombre").textContent = nombreGlobal;
+
+    document.getElementById("badgeModelo").textContent = motoGlobal;
+
+    const randomID = "MDX-" + Math.floor(Math.random() * 999999);
+
+    document.getElementById("badgeId").textContent = randomID;
+
+    // AQUI SE GUARDARA EN LA BASE DE DATOS
+
+    const datos = {
+
+        nombre: nombreGlobal,
+        telefono: document.getElementById("telefono").value,
+        correo: document.getElementById("correo").value,
+        motocicleta: motoGlobal,
+        avatar: selectedAvatar,
+        moto_icono: selectedMoto,
+        repartidor_id: randomID
+
+    };
+
+    console.log(datos);
+
+});
+
+</script>
 
 </body>
 </html>
