@@ -6,7 +6,7 @@
 <title>Mandadex | Registro Repartidor</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+
 <style>
 
 *{
@@ -34,25 +34,19 @@ body{
     border-radius:30px;
     box-shadow:0 0 30px rgba(0,0,0,.4);
 }
+
 .hide-container{
-
     background:transparent !important;
-
     box-shadow:none !important;
-
     border:none !important;
-
 }
-    .container-final{
 
+.container-final{
     background:#1f2937;
-
     border:1px solid rgba(255,255,255,.04);
-
-    box-shadow:
-    0 0 35px rgba(0,0,0,.35);
-
+    box-shadow:0 0 35px rgba(0,0,0,.35);
 }
+
 .logo{
     text-align:center;
     margin-bottom:25px;
@@ -105,7 +99,7 @@ input::placeholder{
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 .btn:hover{
@@ -136,25 +130,32 @@ input::placeholder{
 }
 
 .avatar-grid,
-.moto-grid{
+.moto-grid,
+.color-grid{
 
     display:grid;
-
-    grid-template-columns:repeat(5,60px);
-
     justify-content:center;
-
-    gap:10px;
-
+    gap:12px;
     margin:20px 0;
 
 }
 
+.avatar-grid,
+.moto-grid{
+    grid-template-columns:repeat(5,60px);
+}
+
+.color-grid{
+    grid-template-columns:repeat(3,60px);
+}
+
 .avatar,
-.moto{
+.moto,
+.color-option{
+
     width:60px;
     height:60px;
-    border-radius:16px;
+    border-radius:18px;
     background:#374151;
     display:flex;
     justify-content:center;
@@ -163,27 +164,27 @@ input::placeholder{
     cursor:pointer;
     border:3px solid transparent;
     transition:.2s;
+
+}
+
+.color-option{
+    font-size:0;
 }
 
 .selected{
-    border:3px solid #ff5a1f;
-    transform:scale(1.05);
+    border:3px solid #ffffff;
+    transform:scale(1.08);
 }
 
 .badge{
 
-     width:100%;
-
+    width:100%;
     max-width:390px;
-
     margin:20px auto;
-
     padding:45px 22px;
-    background:linear-gradient(145deg,#2563eb,#1e40af);
     border-radius:35px;
-   
     color:white;
-    
+
     box-shadow:
     0 20px 50px rgba(0,0,0,.45),
     inset 0 1px 1px rgba(255,255,255,.15);
@@ -192,7 +193,9 @@ input::placeholder{
     overflow:hidden;
 
     border:1px solid rgba(255,255,255,.08);
+
 }
+
 .badge::before{
     content:"";
     position:absolute;
@@ -234,7 +237,6 @@ input::placeholder{
     border-radius:30px;
     font-size:12px;
     font-weight:bold;
-    box-shadow:0 0 15px rgba(34,197,94,.4);
 }
 
 .badge-avatar{
@@ -248,19 +250,13 @@ input::placeholder{
     align-items:center;
     font-size:65px;
     margin:0 auto 18px;
-
     border:6px solid rgba(255,255,255,.25);
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.25),
-    inset 0 2px 5px rgba(255,255,255,.4);
 }
 
 .badge h2{
     text-align:center;
     font-size:30px;
     margin-bottom:8px;
-    font-weight:bold;
 }
 
 .badge-role{
@@ -268,7 +264,6 @@ input::placeholder{
     opacity:.9;
     margin-bottom:25px;
     font-size:15px;
-    letter-spacing:1px;
 }
 
 .badge-divider{
@@ -283,8 +278,6 @@ input::placeholder{
     padding:20px;
     border-radius:22px;
     backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,.08);
 }
 
 .label{
@@ -292,7 +285,6 @@ input::placeholder{
     font-size:13px;
     opacity:.8;
     margin-bottom:10px;
-    letter-spacing:1px;
 }
 
 .moto-section{
@@ -316,35 +308,23 @@ input::placeholder{
     font-size:22px;
     font-weight:bold;
     letter-spacing:4px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    box-shadow:inset 0 1px 2px rgba(255,255,255,.08);
 }
 
-   @media(max-width:600px){
+@media(max-width:600px){
 
     .container{
-
         max-width:100%;
-
         padding:14px;
-
     }
 
     .badge{
-
         max-width:100%;
-
         width:100%;
-
         padding:50px 24px;
-
-        border-radius:38px;
-
     }
 
 }
+
 </style>
 </head>
 
@@ -352,182 +332,200 @@ input::placeholder{
 
 <div class="container">
 
-    <!-- FORMULARIO -->
+<!-- FORMULARIO -->
 
-    <div id="formScreen">
+<div id="formScreen">
 
-        <div class="logo">
-            <h1>Mandadex</h1>
-            <p>Registro de Repartidores</p>
-        </div>
-
-        <form id="registroForm">
-
-            <div class="form-group">
-                <label>Nombre completo</label>
-
-                <input
-                    type="text"
-                    id="nombre"
-                    placeholder="Ingresa tu nombre"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label>Teléfono</label>
-
-                <input
-                    type="tel"
-                    id="telefono"
-                    placeholder="333 000 0000"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label>Correo electrónico</label>
-
-                <input
-                    type="email"
-                    id="correo"
-                    placeholder="correo@gmail.com"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label>Modelo de motocicleta</label>
-
-                <input
-                    type="text"
-                    id="motoModelo"
-                    placeholder="Ejemplo: Italika FT150"
-                    required
-                >
-            </div>
-
-            <button type="submit" class="btn">
-                Registrarme
-            </button>
-
-        </form>
-
+    <div class="logo">
+        <h1>Mandadex</h1>
+        <p>Registro de Repartidores</p>
     </div>
 
-    <!-- CARGANDO -->
+    <form id="registroForm">
 
-    <div class="loading-screen" id="loadingScreen">
+        <div class="form-group">
+            <label>Nombre completo</label>
 
-        <div class="loader"></div>
-
-        <h2>Registrando...</h2>
-
-        <p style="margin-top:10px;color:#9ca3af;">
-            Preparando tu gafete digital
-        </p>
-
-    </div>
-
-    <!-- AVATAR -->
-
-    <div class="avatar-screen" id="avatarScreen">
-
-        <h2>Todo listo ✅</h2>
-
-        <p style="margin-top:10px;color:#9ca3af;">
-            Elige tu avatar y motocicleta
-        </p>
-
-        <h3 style="margin-top:25px;">Avatar</h3>
-
-        <div class="avatar-grid">
-
-            <div class="avatar">🧑</div>
-            <div class="avatar">👨</div>
-            <div class="avatar">😎</div>
-            <div class="avatar">🧔</div>
-            <div class="avatar">👨‍🚀</div>
-
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Ingresa tu nombre"
+                required
+            >
         </div>
 
-        <h3 style="margin-top:20px;">Motocicleta</h3>
+        <div class="form-group">
+            <label>Teléfono</label>
 
-        <div class="moto-grid">
-
-            <div class="moto">🏍️</div>
-            <div class="moto">🛵</div>
-            <div class="moto">🏍</div>
-            <div class="moto">🛵</div>
-            <div class="moto">🏍️</div>
-
+            <input
+                type="tel"
+                id="telefono"
+                placeholder="333 000 0000"
+                required
+            >
         </div>
 
-        <button class="btn" id="confirmarBtn">
-            Confirmar
+        <div class="form-group">
+            <label>Correo electrónico</label>
+
+            <input
+                type="email"
+                id="correo"
+                placeholder="correo@gmail.com"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Modelo de motocicleta</label>
+
+            <input
+                type="text"
+                id="motoModelo"
+                placeholder="Ejemplo: Italika FT150"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn">
+            Registrarme
         </button>
 
+    </form>
+
+</div>
+
+<!-- CARGANDO -->
+
+<div class="loading-screen" id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <h2 id="loadingTitle">Registrando...</h2>
+
+    <p id="loadingText" style="margin-top:10px;color:#9ca3af;">
+        Preparando tu perfil
+    </p>
+
+</div>
+
+<!-- AVATAR -->
+
+<div class="avatar-screen" id="avatarScreen">
+
+    <h2>Todo listo ✅</h2>
+
+    <p style="margin-top:10px;color:#9ca3af;">
+        Personaliza tu gafete
+    </p>
+
+    <h3 style="margin-top:25px;">Avatar</h3>
+
+    <div class="avatar-grid">
+
+        <div class="avatar">🧑</div>
+        <div class="avatar">👨</div>
+        <div class="avatar">😎</div>
+        <div class="avatar">🧔</div>
+        <div class="avatar">👨‍🚀</div>
+
     </div>
 
-    <!-- GAFETE -->
+    <h3 style="margin-top:20px;">Motocicleta</h3>
 
-    <div class="badge-screen" id="badgeScreen">
+    <div class="moto-grid">
 
-        <div class="badge">
+        <div class="moto">🏍️</div>
+        <div class="moto">🛵</div>
+        <div class="moto">🏁</div>
+        <div class="moto">📦</div>
+        <div class="moto">⚡</div>
 
-            <div class="badge-top">
+    </div>
 
-                <div class="mandadex-logo">
-                    MDX
-                </div>
+    <h3 style="margin-top:20px;">Color</h3>
 
-                <div class="badge-status">
-                    ACTIVO
-                </div>
+    <div class="color-grid">
 
+        <div class="color-option" data-gradient="linear-gradient(145deg,#2563eb,#1e40af)" style="background:linear-gradient(145deg,#2563eb,#1e40af);"></div>
+
+        <div class="color-option" data-gradient="linear-gradient(145deg,#ff5a1f,#ea580c)" style="background:linear-gradient(145deg,#ff5a1f,#ea580c);"></div>
+
+        <div class="color-option" data-gradient="linear-gradient(145deg,#16a34a,#166534)" style="background:linear-gradient(145deg,#16a34a,#166534);"></div>
+
+        <div class="color-option" data-gradient="linear-gradient(145deg,#9333ea,#6b21a8)" style="background:linear-gradient(145deg,#9333ea,#6b21a8);"></div>
+
+        <div class="color-option" data-gradient="linear-gradient(145deg,#dc2626,#991b1b)" style="background:linear-gradient(145deg,#dc2626,#991b1b);"></div>
+
+        <div class="color-option" data-gradient="linear-gradient(145deg,#111827,#000000)" style="background:linear-gradient(145deg,#111827,#000000);"></div>
+
+    </div>
+
+    <button class="btn" id="confirmarBtn">
+        Confirmar
+    </button>
+
+</div>
+
+<!-- GAFETE -->
+
+<div class="badge-screen" id="badgeScreen">
+
+    <div class="badge" id="badgeCard">
+
+        <div class="badge-top">
+
+            <div class="mandadex-logo">
+                MDX
             </div>
 
-            <div class="badge-avatar" id="badgeAvatar">
-                🧑
-            </div>
-
-            <h2 id="badgeNombre">
-                Nombre
-            </h2>
-
-            <p class="badge-role">
-                Repartidor Oficial
-            </p>
-
-            <div class="badge-divider"></div>
-
-            <div class="info-box">
-
-                <span class="label">
-                    Motocicleta
-                </span>
-
-                <div class="moto-section">
-
-                    <span class="moto-icon" id="badgeMoto">
-                        🏍️
-                    </span>
-
-                    <span id="badgeModelo">
-                        Italika FT150
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="badge-id" id="badgeId">
-                MDX-0001
+            <div class="badge-status">
+                ACTIVO
             </div>
 
         </div>
 
+        <div class="badge-avatar" id="badgeAvatar">
+            🧑
+        </div>
+
+        <h2 id="badgeNombre">
+            Nombre
+        </h2>
+
+        <p class="badge-role">
+            Repartidor Oficial
+        </p>
+
+        <div class="badge-divider"></div>
+
+        <div class="info-box">
+
+            <span class="label">
+                Motocicleta
+            </span>
+
+            <div class="moto-section">
+
+                <span class="moto-icon" id="badgeMoto">
+                    🏍️
+                </span>
+
+                <span id="badgeModelo">
+                    Italika FT150
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="badge-id" id="badgeId">
+            MDX-0001
+        </div>
+
     </div>
+
+</div>
 
 </div>
 
@@ -541,7 +539,7 @@ const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-    
+
 const form = document.getElementById("registroForm");
 
 const formScreen = document.getElementById("formScreen");
@@ -551,12 +549,16 @@ const badgeScreen = document.getElementById("badgeScreen");
 
 const avatars = document.querySelectorAll(".avatar");
 const motos = document.querySelectorAll(".moto");
+const colorOptions = document.querySelectorAll(".color-option");
 
-    document.querySelector(".container")
+document.querySelector(".container")
 .classList.add("container-final");
 
 let selectedAvatar = "🧑";
 let selectedMoto = "🏍️";
+
+let selectedGradient =
+"linear-gradient(145deg,#2563eb,#1e40af)";
 
 let nombreGlobal = "";
 let motoGlobal = "";
@@ -589,6 +591,20 @@ motos.forEach(moto => {
 
 });
 
+colorOptions.forEach(color => {
+
+    color.addEventListener("click", ()=>{
+
+        colorOptions.forEach(c => c.classList.remove("selected"));
+
+        color.classList.add("selected");
+
+        selectedGradient = color.dataset.gradient;
+
+    });
+
+});
+
 form.addEventListener("submit", function(e){
 
     e.preventDefault();
@@ -600,45 +616,41 @@ form.addEventListener("submit", function(e){
     formScreen.style.display = "none";
 
     loadingScreen.style.display = "block";
+
+    document.getElementById("loadingTitle").textContent =
+    "Registrando...";
+
+    document.getElementById("loadingText").textContent =
+    "Preparando tu perfil";
+
     document.querySelector(".container")
-.classList.add("hide-container");
+    .classList.add("hide-container");
 
     setTimeout(()=>{
 
         loadingScreen.style.display = "none";
 
         avatarScreen.style.display = "block";
-        document.querySelector(".container")
-.classList.add("hide-container");
 
     },2500);
 
 });
 
-document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
+document.getElementById("confirmarBtn")
+.addEventListener("click", async ()=>{
 
     avatarScreen.style.display = "none";
 
-    badgeScreen.style.display = "block";
-    document.querySelector(".container")
-.classList.remove("hide-container");
+    loadingScreen.style.display = "block";
 
-    document.querySelector(".container")
-.classList.add("container-final");
+    document.getElementById("loadingTitle").textContent =
+    "Generando gafete...";
 
-    document.getElementById("badgeAvatar").textContent = selectedAvatar;
+    document.getElementById("loadingText").textContent =
+    "Personalizando tu identificación digital";
 
-    document.getElementById("badgeMoto").textContent = selectedMoto;
-
-    document.getElementById("badgeNombre").textContent = nombreGlobal;
-
-    document.getElementById("badgeModelo").textContent = motoGlobal;
-
-    const randomID = "MDX-" + Math.floor(1000 + Math.random() * 9000);
-
-    document.getElementById("badgeId").textContent = randomID;
-
-    // AQUI SE GUARDARA EN LA BASE DE DATOS
+    const randomID =
+    "MDX-" + Math.floor(1000 + Math.random() * 9000);
 
     const datos = {
 
@@ -648,27 +660,55 @@ document.getElementById("confirmarBtn").addEventListener("click", async ()=>{
         motocicleta: motoGlobal,
         avatar: selectedAvatar,
         moto_icono: selectedMoto,
-        repartidor_id: randomID
+        repartidor_id: randomID,
+        color_gafete: selectedGradient
 
     };
 
     const { error } = await supabaseClient
-.from("repartidores")
-.insert([datos]);
+    .from("repartidores")
+    .insert([datos]);
 
-if(error){
+    setTimeout(()=>{
 
-    alert("ERROR: " + error.message);
+        loadingScreen.style.display = "none";
 
-    console.log(error);
+        badgeScreen.style.display = "block";
 
-}else{
+        document.querySelector(".container")
+        .classList.remove("hide-container");
 
-    alert("REGISTRO GUARDADO");
+        document.getElementById("badgeCard")
+        .style.background = selectedGradient;
 
-    console.log("Registro guardado correctamente");
+        document.getElementById("badgeAvatar")
+        .textContent = selectedAvatar;
 
-}
+        document.getElementById("badgeMoto")
+        .textContent = selectedMoto;
+
+        document.getElementById("badgeNombre")
+        .textContent = nombreGlobal;
+
+        document.getElementById("badgeModelo")
+        .textContent = motoGlobal;
+
+        document.getElementById("badgeId")
+        .textContent = randomID;
+
+    },2500);
+
+    if(error){
+
+        alert("ERROR: " + error.message);
+
+        console.log(error);
+
+    }else{
+
+        console.log("Registro guardado correctamente");
+
+    }
 
 });
 
