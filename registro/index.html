@@ -150,11 +150,72 @@ input::placeholder{
 }
 
 .avatar,
-.moto,
+.moto{
+
+    overflow:hidden;
+    position:relative;
+    background:#374151;
+
+}
+
+.moto-img{
+
+    position:absolute;
+
+    width:520px;
+
+    max-width:none;
+
+}
+
+/* MOTONETA */
+
+.motoneta{
+
+    left:-10px;
+    top:-10px;
+
+}
+
+/* DEPORTIVA */
+
+.deportiva{
+
+    left:-610px;
+    top:-10px;
+
+}
+
+/* NAKED */
+
+.naked{
+
+    left:-1190px;
+    top:-10px;
+
+}
+
+/* DOBLE */
+
+.doble{
+
+    left:-160px;
+    top:-430px;
+
+}
+
+/* CARGO */
+
+.cargo{
+
+    left:-860px;
+    top:-430px;
+
+}
 .color-option{
 
-    width:60px;
-    height:60px;
+   width:78px;
+height:78px;
     border-radius:18px;
     background:#374151;
     display:flex;
@@ -288,6 +349,24 @@ input::placeholder{
 }
 
 .moto-section{
+    #badgeMotoContainer{
+
+    width:110px;
+    height:70px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+#badgeMoto{
+
+    position:absolute;
+
+    width:520px;
+
+}
     display:flex;
     align-items:center;
     gap:12px;
@@ -433,15 +512,59 @@ input::placeholder{
 
     <h3 style="margin-top:20px;">Motocicleta</h3>
 
-    <div class="moto-grid">
+<div class="moto-grid">
 
-        <div class="moto">🏍️</div>
-        <div class="moto">🛵</div>
-        <div class="moto">🏁</div>
-        <div class="moto">📦</div>
-        <div class="moto">⚡</div>
+    <!-- MOTONETA -->
+    <div class="moto selected" data-moto="motoneta">
+
+        <img
+            src="assets/motos/motos.png"
+            class="moto-img motoneta"
+        >
 
     </div>
+
+    <!-- DEPORTIVA -->
+    <div class="moto" data-moto="deportiva">
+
+        <img
+            src="assets/motos/motos.png"
+            class="moto-img deportiva"
+        >
+
+    </div>
+
+    <!-- NAKED -->
+    <div class="moto" data-moto="naked">
+
+        <img
+            src="assets/motos/motos.png"
+            class="moto-img naked"
+        >
+
+    </div>
+
+    <!-- DOBLE -->
+    <div class="moto" data-moto="doble">
+
+        <img
+            src="assets/motos/motos.png"
+            class="moto-img doble"
+        >
+
+    </div>
+
+    <!-- CARGO -->
+    <div class="moto" data-moto="cargo">
+
+        <img
+            src="assets/motos/motos.png"
+            class="moto-img cargo"
+        >
+
+    </div>
+
+</div>
 
     <h3 style="margin-top:20px;">Color</h3>
 
@@ -529,9 +652,14 @@ input::placeholder{
 
             <div class="moto-section">
 
-                <span class="moto-icon" id="badgeMoto">
-                    🏍️
-                </span>
+             <div id="badgeMotoContainer">
+
+    <img
+        id="badgeMoto"
+        src="assets/motos/motos.png"
+    >
+
+</div>
 
                 <span id="badgeModelo">
                     Italika FT150
@@ -607,7 +735,7 @@ motos.forEach(moto => {
 
         moto.classList.add("selected");
 
-        selectedMoto = moto.textContent;
+     selectedMoto = moto.dataset.moto;
 
     });
 
@@ -706,8 +834,43 @@ document.getElementById("confirmarBtn")
         document.getElementById("badgeAvatar")
         .textContent = selectedAvatar;
 
-        document.getElementById("badgeMoto")
-        .textContent = selectedMoto;
+      const badgeMoto =
+document.getElementById("badgeMoto");
+
+if(selectedMoto === "motoneta"){
+
+    badgeMoto.style.left = "-10px";
+    badgeMoto.style.top = "-10px";
+
+}
+
+if(selectedMoto === "deportiva"){
+
+    badgeMoto.style.left = "-610px";
+    badgeMoto.style.top = "-10px";
+
+}
+
+if(selectedMoto === "naked"){
+
+    badgeMoto.style.left = "-1190px";
+    badgeMoto.style.top = "-10px";
+
+}
+
+if(selectedMoto === "doble"){
+
+    badgeMoto.style.left = "-160px";
+    badgeMoto.style.top = "-430px";
+
+}
+
+if(selectedMoto === "cargo"){
+
+    badgeMoto.style.left = "-860px";
+    badgeMoto.style.top = "-430px";
+
+}
 
         document.getElementById("badgeNombre")
         .textContent = nombreGlobal;
