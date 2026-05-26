@@ -915,11 +915,27 @@ form.addEventListener("submit", function(e){
 
     loadingScreen.style.display = "block";
 
+    /* OCULTAR CUADRO GRIS */
+
+    document.querySelector(".container")
+    .classList.add("hide-container");
+
+    document.getElementById("loadingTitle")
+    .textContent = "Registrando...";
+
+    document.getElementById("loadingText")
+    .textContent = "Preparando tu perfil";
+
     setTimeout(()=>{
 
         loadingScreen.style.display = "none";
 
         avatarScreen.style.display = "block";
+
+        /* SIGUE OCULTO */
+
+        document.querySelector(".container")
+        .classList.add("hide-container");
 
     },1800);
 
@@ -936,6 +952,11 @@ document.getElementById("confirmarBtn")
 
     loadingScreen.style.display = "block";
 
+    /* OCULTAR CUADRO GRIS */
+
+    document.querySelector(".container")
+    .classList.add("hide-container");
+
     document.getElementById("loadingTitle")
     .textContent = "Generando gafete...";
 
@@ -950,6 +971,7 @@ document.getElementById("confirmarBtn")
     const datos = {
 
         nombre: nombreGlobal,
+
         telefono:
         document.getElementById("telefono").value,
 
@@ -978,6 +1000,11 @@ document.getElementById("confirmarBtn")
         loadingScreen.style.display = "none";
 
         badgeScreen.style.display = "block";
+
+        /* VOLVER MOSTRAR CUADRO */
+
+        document.querySelector(".container")
+        .classList.remove("hide-container");
 
         document.getElementById("badgeCard")
         .style.background = selectedGradient;
