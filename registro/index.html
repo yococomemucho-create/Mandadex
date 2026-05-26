@@ -146,7 +146,7 @@ input::placeholder{
 }
 
 .color-grid{
-    grid-template-columns:repeat(3,60px);
+ grid-template-columns:repeat(5,55px);
 }
 
 .avatar,
@@ -445,22 +445,44 @@ input::placeholder{
 
     <h3 style="margin-top:20px;">Color</h3>
 
-    <div class="color-grid">
+  <div class="color-grid">
 
-        <div class="color-option" data-gradient="linear-gradient(145deg,#2563eb,#1e40af)" style="background:linear-gradient(145deg,#2563eb,#1e40af);"></div>
-
-        <div class="color-option" data-gradient="linear-gradient(145deg,#ff5a1f,#ea580c)" style="background:linear-gradient(145deg,#ff5a1f,#ea580c);"></div>
-
-        <div class="color-option" data-gradient="linear-gradient(145deg,#16a34a,#166534)" style="background:linear-gradient(145deg,#16a34a,#166534);"></div>
-
-        <div class="color-option" data-gradient="linear-gradient(145deg,#9333ea,#6b21a8)" style="background:linear-gradient(145deg,#9333ea,#6b21a8);"></div>
-
-        <div class="color-option" data-gradient="linear-gradient(145deg,#dc2626,#991b1b)" style="background:linear-gradient(145deg,#dc2626,#991b1b);"></div>
-
-        <div class="color-option" data-gradient="linear-gradient(145deg,#111827,#000000)" style="background:linear-gradient(145deg,#111827,#000000);"></div>
-
+    <!-- Azul -->
+    <div 
+        class="color-option"
+        data-gradient="linear-gradient(145deg,#2563eb,#1e40af)"
+        style="background:linear-gradient(145deg,#2563eb,#1e40af);">
     </div>
 
+    <!-- Naranja -->
+    <div 
+        class="color-option"
+        data-gradient="linear-gradient(145deg,#ff5a1f,#ea580c)"
+        style="background:linear-gradient(145deg,#ff5a1f,#ea580c);">
+    </div>
+
+    <!-- Negro -->
+    <div 
+        class="color-option"
+        data-gradient="linear-gradient(145deg,#111827,#000000)"
+        style="background:linear-gradient(145deg,#111827,#000000);">
+    </div>
+
+    <!-- Morado fuerte -->
+    <div 
+        class="color-option"
+        data-gradient="linear-gradient(145deg,#7e22ce,#581c87)"
+        style="background:linear-gradient(145deg,#7e22ce,#581c87);">
+    </div>
+
+    <!-- Verde oscuro -->
+    <div 
+        class="color-option"
+        data-gradient="linear-gradient(145deg,#15803d,#14532d)"
+        style="background:linear-gradient(145deg,#15803d,#14532d);">
+    </div>
+
+</div>
     <button class="btn" id="confirmarBtn">
         Confirmar
     </button>
@@ -632,7 +654,7 @@ form.addEventListener("submit", function(e){
 
         avatarScreen.style.display = "block";
 
-    },2500);
+    },2000);
 
 });
 
@@ -696,7 +718,7 @@ document.getElementById("confirmarBtn")
         document.getElementById("badgeId")
         .textContent = randomID;
 
-    },1800);
+    },1500);
 
     if(error){
 
